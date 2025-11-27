@@ -3,26 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguridad | Lector QR</title>
-    <link rel="stylesheet" href="css/stylesGuard.css">
+    <title>Seguridad | Escáner</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="dashboard-layout">
 
-    <h2>Lector de Código QR</h2>
-<p>Escanea el QR del estudiante para validar entrada o salida.</p>
+    <header class="main-header">
+        <h1>Terminal de Seguridad</h1>
+    </header>
 
-<button id="btnAbrirCamara">📷 Activar Cámara</button>
+    <div class="container">
 
-<!-- Cámara -->
-<div id="reader" style="width: 300px; margin: auto; margin-top: 20px; display:none;"></div>
+        <div class="card" style="text-align: center;">
+            <h3>Escáner</h3>
+            <button id="btnAbrirCamara" class="btn" style="max-width: 300px; margin-bottom: 20px;">
+                📷 Activar Cámara
+            </button>
+            <div id="reader" style="width: 100%; max-width: 400px; margin: 0 auto; display:none; overflow: hidden; border-radius: 10px;"></div>
+        </div>
 
-<!-- Resultado -->
-<div class="card">
-    <h3>Resultado</h3>
-    <p id="resultado"></p>
-    <div id="datosAlumno"></div>
-</div>
+        <div class="card">
+            <h3>Resultado del Acceso</h3>
+            <p id="resultado" style="font-size: 1.2rem; min-height: 25px; margin-bottom: 15px; font-weight: bold;"></p>
+            
+            <div id="datosAlumno" style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
+                <p style="color: #aaa; text-align: center;">Escanea un código para ver datos</p>
+            </div>
+        </div>
 
-<script src="https://unpkg.com/html5-qrcode"></script>
-<script type ="module" src="js/guard.js"></script>
+        <div class="card">
+            <h3>Historial Reciente</h3>
+            <div class="table-responsive">
+                <table id="tablaAccesos">
+                    </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script type="module" src="js/guard.js"></script>
+
+</body>
+</html>

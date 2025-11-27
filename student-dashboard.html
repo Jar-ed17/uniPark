@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudiante | Mi QR</title>
-
-    <link rel="stylesheet" href="css/stylesStudent.css">
+    <title>Mi Pase | UniPark</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="dashboard-layout">
 
-    <h2>Mi código QR</h2>
-    <p>Muéstralo en la entrada para ingresar al campus.</p>
+    <header class="main-header">
+        <h1>Mi Pase de Acceso</h1>
+    </header>
 
-    <div id="infoAlumno"></div>
+    <div class="container" style="max-width: 500px;">
+        
+        <div class="card" style="text-align: center;">
+            <div id="infoAlumno" style="margin-bottom: 20px; font-weight: 500;">
+                Cargando datos...
+            </div>
 
-    <div id="qr-container"></div>
+            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                <div id="qr-container"></div>
+            </div>
 
-    <button onclick="regenerarQR()">Regenerar QR</button>
+            <button onclick="regenerarQR()" class="btn" style="background-color: var(--text-muted);">
+                🔄 Regenerar Código
+            </button>
+        </div>
 
-    <!-- Librería QR -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        <div class="card" style="text-align: center;">
+            <h3>Lugares Disponibles</h3>
+            <p id="cupos" style="font-size: 2rem; color: var(--primary); font-weight: bold; margin: 0;">
+                --
+            </p>
+        </div>
 
-    <div class="card">
-        <h3>Lugares disponibles</h3>
-        <p id="cupos">Cargando...</p>
     </div>
 
-    <!-- Script del estudiante -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script type="module" src="js/student.js"></script>
 
 </body>

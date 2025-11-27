@@ -3,67 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador | Control de Accesos</title>
-
-    <link rel="stylesheet" href="css/stylesAdmin.css">
-
+    <title>Admin | UniPark</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
 
-<header>Panel de Administrador</header>
+<body class="dashboard-layout">
+
+<header class="main-header">
+    <h1>Panel de Administrador UniPark</h1>
+</header>
 
 <div class="container">
 
-    <!-- FORMULARIO DE CREACIÓN DE USUARIOS -->
     <div class="card">
-        <h3>Crear nuevo usuario</h3>
+        <h3>Registrar Nuevo Usuario</h3>
 
         <input type="text" id="nombre" placeholder="Nombre completo">
         <input type="email" id="email" placeholder="Correo electrónico">
         <input type="password" id="password" placeholder="Contraseña inicial">
 
-        <select id="rol">
-            <option value="estudiante">Estudiante</option>
-            <option value="seguridad">Seguridad</option>
-            <option value="admin">Administrador</option>
-        </select>
+        <div style="display: flex; gap: 15px;">
+            <select id="rol">
+                <option value="" disabled selected>Selecciona Rol</option>
+                <option value="estudiante">Estudiante</option>
+                <option value="seguridad">Seguridad</option>
+                <option value="admin">Administrador</option>
+            </select>
+            
+            <select id="tipoVehiculo">
+                <option value="carro">Carro</option>
+                <option value="moto">Moto</option>
+            </select>
+        </div>
 
-        <input type="text" id="matricula" placeholder="Matrícula / ID universitario">
+        <input type="text" id="matricula" placeholder="Matrícula / ID">
         <input type="text" id="placa" placeholder="Placa del vehículo">
         
-        <select id="tipoVehiculo">
-            <option value="carro">Carro</option>
-            <option value="moto">Moto</option>
-        </select>
-
-        <button onclick="crearUsuario()">Crear Usuario</button>
-
-
-        <p id="msg" style="color: green; margin-top: 10px;"></p>
+        <button onclick="crearUsuario()" class="btn">Crear Usuario</button>
+        <p id="msg" style="text-align: center; margin-top: 10px;"></p>
     </div>
 
-
-    <!-- LISTA DE USUARIOS -->
     <div class="card">
-        <h3>Usuarios registrados</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Matrícula</th>
-                    <th>Vehículo</th>
-                </tr>
-            </thead>
-            <tbody id="tablaUsuarios"></tbody>
-        </table>
+        <h3>Usuarios Registrados</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Matrícula</th>
+                        <th>Vehículo</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaUsuarios"></tbody>
+            </table>
+        </div>
     </div>
 
 </div>
 
 <script type="module" src="js/admin.js"></script>
-
 </body>
 </html>

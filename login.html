@@ -4,30 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | Control de Accesos Campus</title>
-
-    <link rel="stylesheet" href="css/stylesLogin.css"> 
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="centered-layout">
 
-    <div class="login-container">
-        <h2>Acceso al Sistema</h2>
+    <div class="card login-card">
+        <h2>Bienvenido</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">
+            Ingresa tus credenciales para acceder
+        </p>
 
         <input type="email" id="email" placeholder="Correo electrónico" />
         <input type="password" id="password" placeholder="Contraseña" />
 
-      <button id="btnLogin">Ingresar</button>
+        <button id="btnLogin" class="btn">Ingresar</button>
 
-
-<p id="msg" style="color:red; text-align:center;"></p>
-
-
-        <p class="error" id="errorMsg"></p>
+        <p id="msg" class="msg-error"></p>
+        <p id="errorMsg" class="msg-error"></p>
     </div>
 
     <script type="module" src="js/auth.js"></script>
-
-
-
 </body>
 </html>
