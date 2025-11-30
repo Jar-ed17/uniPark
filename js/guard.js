@@ -1,4 +1,5 @@
 import { db, auth } from "./firebase-config.js";
+import { signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
 import { 
     doc,
@@ -235,3 +236,12 @@ function mostrarError(m) {
 err => {
     // ignorar errores del escáner
 }
+
+document.getElementById("btnLogout").addEventListener("click", async () => {
+    try {
+        await signOut(auth);
+        window.location.href = "login.html";
+    } catch (error) {
+        console.error("Error al cerrar sesión:", error);
+    }
+});

@@ -1,9 +1,9 @@
 import { auth, db } from "./firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+// V --- AQUÍ ESTÁ EL CAMBIO: Importamos ambas funciones en la misma línea --- V
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"; 
 import { doc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 console.log("student.js cargado correctamente");
-
 
 let qr;
 
@@ -69,12 +69,9 @@ function generarQR(uid, data) {
 // REGENERAR QR MANUALMENTE
 // ---------------------------------------------------------
 window.regenerarQR = function () {
-    // Vuelve a obtener usuario autenticado
     const user = auth.currentUser;
-
     if (!user) return;
 
-    // Consultar Firestore de nuevo
     getDoc(doc(db, "users", user.uid)).then((snap) => {
         const data = snap.data();
         generarQR(user.uid, data);
@@ -91,11 +88,22 @@ onSnapshot(refParqueo, (snap) => {
         cupos.textContent = "Error al cargar cupos";
         return;
     }
-
     const data = snap.data();
-
-const disponibles = data.capacidad - data.ocupadosActuales;
-
-
+    const disponibles = data.capacidad - data.ocupadosActuales;
     cupos.textContent = `Disponibles: ${disponibles}`;
 });
+
+// ---------------------------------------------------------
+// CERRAR SESIÓN (Asegúrate de que esto NO esté comentado)
+// ---------------------------------------------------------
+const btnLogout = document.getElementById("btnLogout");
+if (btnLogout) {
+    btnLogout.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            window.location.href = "login.html";
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
+    });
+}

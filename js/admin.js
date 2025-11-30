@@ -1,7 +1,9 @@
 import { auth, db } from "./firebase-config.js";
 
+// CORRECCIÓN: Todo lo de 'auth' en una sola importación
 import { 
-    createUserWithEmailAndPassword 
+    createUserWithEmailAndPassword,
+    signOut 
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
 import { 
@@ -37,7 +39,7 @@ export async function crearUsuario() {
         // 2. Crear documento en Firestore usando el UID
         await setDoc(doc(db, "users", uid), {
             nombre,
-            correo,          // <-- corregido
+            correo,
             rol,
             matricula,
             placa,
@@ -88,4 +90,20 @@ async function cargarUsuarios() {
 // Cargar lista al iniciar
 cargarUsuarios();
 
+// Hacer la función accesible globalmente para el onclick del HTML
 window.crearUsuario = crearUsuario;
+
+// --------------------------------------------------
+// CERRAR SESIÓN
+// --------------------------------------------------
+const btnLogout = document.getElementById("btnLogout");
+if (btnLogout) {
+    btnLogout.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            window.location.href = "login.html"; // Redirigir al login
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
+    });
+}
