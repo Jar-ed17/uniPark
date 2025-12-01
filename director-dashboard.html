@@ -1,40 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pase Director | UniPark</title>
 
-    <link rel="stylesheet" href="css/stylesDirector.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/styles.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 
-<body>
+<body class="dashboard-layout dashboard-bg">
 
-<header class="main-header">
-    <h1>Pase de Director</h1>
-    <button id="btnLogout" class="logout-btn">Cerrar Sesión</button>
-</header>
+    <nav class="desktop-nav">
+        <div class="logo">
+            <span>UP</span> UniPark <small style="font-size: 0.8rem; opacity: 0.7; margin-left: 8px;">Dirección</small>
+        </div>
+        <div>
+            <button id="btnLogout" class="btn-logout-nav">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar Sesión</span>
+            </button>
+        </div>
+    </nav>
 
-<div class="container">
+    <div class="container mt-4">
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-md-7 col-lg-6">
+                <div class="profile-card">
+                    <div class="profile-icon">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h3 style="font-weight: 700; color: var(--secondary);">Credencial Digital</h3>
+                    <p class="text-muted">Acceso Directivo</p>
 
-    <div class="card">
-        <div id="infoDirector" class="info">Cargando datos...</div>
+                    <div id="infoDirector" class="info-data-box">
+                        <p class="text-center text-muted"><i class="fa-solid fa-spinner fa-spin"></i> Cargando datos...</p>
+                    </div>
 
-        <div id="qr-container" class="qr-box"></div>
+                    <div class="text-center">
+                        <p style="font-size: 0.9rem; margin-bottom: 5px;">Escanea este código en la entrada</p>
+                        <div id="qr-container" class="qr-display-area"></div>
+                    </div>
 
-        <button id="btnRegenerar" class="regen-btn">🔄 Regenerar Código</button>
+                    <div class="mt-4">
+                        <button id="btnRegenerar" class="btn btn-refresh">
+                            <i class="fa-solid fa-rotate"></i> Actualizar Código
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-lg-4">
+                <div class="status-card">
+                    <div style="font-size: 3rem; color: var(--accent); margin-bottom: 10px;">
+                        <i class="fa-solid fa-square-parking"></i>
+                    </div>
+                    <h4 style="font-weight: 700;">Privado Director</h4>
+                    <p class="text-muted px-3">Lugares disponibles</p>
+                    
+                    <div id="cupos" class="cupos-number">--</div>
+                    
+                    <span class="badge bg-success rounded-pill px-3 py-2">Tiempo Real</span>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <div class="card">
-        <h3>Espacio Exclusivo del Director</h3>
-        <p id="cupos" class="cupos-num">--</p>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-</div>
-
-<script type="module" src="js/director.js"></script>
-
+    <script type="module" src="js/director.js"></script>
 </body>
 </html>

@@ -6,139 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pase de Profesor | UniPark</title>
 
-    <!-- Estilos Maestros -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Librería QR -->
+    <link rel="stylesheet" href="css/styles.css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-    <style>
-        /* Estilos específicos para el dashboard */
-        .qr-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-            padding: 15px;
-            background: white;
-            border: 1px solid #eee;
-            border-radius: var(--radius);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-            width: 250px;
-            height: 250px;
-        }
-
-        /* Clases para la info inyectada por JS */
-        .info-item {
-            margin-bottom: 8px;
-            font-size: 1rem;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-        }
-
-        .info-label {
-            font-weight: 600;
-            color: var(--secondary);
-            margin-right: 8px;
-            min-width: 100px;
-        }
-
-        .cupos-display {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 10px 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .role-badge {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-text {
-            color: rgba(255,255,255,0.9);
-            font-weight: 600;
-            padding: 10px 15px;
-            font-size: 1.1rem;
-            cursor: default;
-            user-select: none;
-        }
-    </style>
 </head>
 
-<body class="dashboard-layout">
+<body class="dashboard-layout dashboard-bg">
 
-    <!-- NAV DESKTOP -->
     <nav class="desktop-nav">
         <div class="logo">
-            <span>UP</span> UniPark <small style="font-size: 0.8rem; opacity: 0.8; margin-left: 5px;">| Profesor</small>
+            <span>UP</span> UniPark <small style="font-size: 0.8rem; opacity: 0.7; margin-left: 8px;">Profesor</small>
         </div>
-        <div class="nav-links" style="display: flex; align-items: center; gap: 15px;">
-            <span class="nav-text">Mi Pase</span>
-            <button id="btnLogoutDesktop" class="nav-link" style="background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid #dc3545; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+        <div>
+            <button id="btnLogoutDesktop" class="btn-logout-nav">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar Sesión</span>
             </button>
         </div>
     </nav>
 
-    <!-- CONTENIDO -->
-    <div class="container">
+    <div class="container mt-4">
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-md-7 col-lg-6">
+                <div class="profile-card">
+                    <div class="profile-icon">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <h3 style="font-weight: 700; color: var(--secondary);">Credencial Digital</h3>
+                    <p class="text-muted">Acceso Docente</p>
 
-        <!-- TARJETA QR -->
-        <div class="card" style="text-align: center;">
-            <div class="role-badge"><i class="fa-solid fa-chalkboard-user"></i> Docente</div>
-            <h2 style="margin-bottom: 20px;">Mi Pase de Acceso</h2>
+                    <div id="infoProfesor" class="info-data-box">
+                        <p class="text-center text-muted"><i class="fa-solid fa-spinner fa-spin"></i> Cargando datos...</p>
+                    </div>
 
-            <div id="infoProfesor" style="text-align: left; background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                <p style="text-align: center; color: var(--text-muted);">
-                    <i class="fa-solid fa-spinner fa-spin"></i> Cargando datos...
-                </p>
+                    <div class="text-center">
+                        <p style="font-size: 0.9rem; margin-bottom: 5px;">Escanea este código en la entrada</p>
+                        <div id="qr-container" class="qr-display-area"></div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button id="btnRegenerar" class="btn btn-refresh">
+                            <i class="fa-solid fa-rotate"></i> Actualizar Código
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="qr-box" id="qr-container"></div>
-            
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">
-                Código válido para zona de profesores
-            </p>
+            <div class="col-md-5 col-lg-4">
+                <div class="status-card">
+                    <div style="font-size: 3rem; color: var(--accent); margin-bottom: 10px;">
+                        <i class="fa-solid fa-square-parking"></i>
+                    </div>
+                    <h4 style="font-weight: 700;">Disponibilidad</h4>
+                    <p class="text-muted px-3">Lugares exclusivos docentes</p>
+                    
+                    <div id="cupos" class="cupos-number">--</div>
+                    
+                    <span class="badge bg-success rounded-pill px-3 py-2">Tiempo Real</span>
+                </div>
+            </div>
 
-            <button id="btnRegenerar" class="btn" style="background-color: var(--secondary); max-width: 300px;">
-                <i class="fa-solid fa-rotate"></i> Actualizar Código
-            </button>
         </div>
-
-        <!-- TARJETA CUPOS -->
-        <div class="card" style="text-align: center;">
-            <h3><i class="fa-solid fa-square-parking"></i> Disponibilidad Docente</h3>
-            <p style="color: var(--text-muted);">Lugares exclusivos disponibles</p>
-            <div id="cupos" class="cupos-display">--</div>
-        </div>
-
     </div>
 
-    <!-- NAV MOBILE -->
-    <nav class="mobile-nav">
-        <a href="#" class="nav-link active" style="padding: 8px 20px;">
-            <i class="fa-solid fa-id-card" style="font-size: 1.2rem;"></i>
-        </a>
-        <button id="btnLogoutMobile" class="nav-link" style="padding: 8px 20px; background: transparent; border: none; color: #dc3545; cursor: pointer;">
-            <i class="fa-solid fa-right-from-bracket" style="font-size: 1.2rem;"></i>
-        </button>
-    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- VINCULACIÓN AL SCRIPT EXTERNO -->
     <script type="module" src="js/profesor.js"></script>
-
 </body>
 </html>

@@ -1,224 +1,221 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | UniPark</title>
+    <title>Admin Panel | UniPark</title>
 
-    <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- ICONOS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- CSS PERSONALIZADO -->
-    <link rel="stylesheet" href="css/stylesAdmin.css">
-
-    <style>
-        /* 🔔 Contenedor de alertas flotantes */
-        #alertContainer {
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            width: 360px;
-            z-index: 5000 !important;
-        }
-
-        /* 🔔 Panel de solicitudes */
-        #panelSolicitudes {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            width: 380px;
-            max-height: 80vh;
-            overflow-y: auto;
-            background: rgba(20, 20, 20, 0.92);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 12px;
-            z-index: 4500 !important;
-            display: none;
-            box-shadow: 0 0 20px rgba(0,0,0,0.55);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .solicitud-card {
-            background: rgba(255,255,255,0.08);
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            color: white;
-            border-left: 4px solid #0d6efd;
-        }
-
-        .solicitud-btns button {
-            width: 48%;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="dashboard-layout dashboard-bg">
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-dark bg-primary px-4 py-3 shadow d-flex justify-content-between align-items-center">
-
-        <h3 class="text-white m-0 d-flex align-items-center gap-2">
-            <i class="bi bi-shield-lock-fill"></i> Panel Administrador
-        </h3>
-
+    <nav class="desktop-nav">
+        <div class="logo">
+            <span>UP</span> UniPark <small style="font-size: 0.8rem; opacity: 0.7; margin-left: 8px;">Administración</small>
+        </div>
+        
         <div class="d-flex align-items-center gap-3">
-
-            <!-- 🔔 ICONO DE SOLICITUDES -->
-            <button id="btnSolicitudes" class="btn btn-light position-relative">
-                <i class="bi bi-person-plus-fill"></i>  
-                <span id="contadorSolicitudes" 
-                      class="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-pill">
-                      0
+            
+            <button id="btnSolicitudes" class="btn-nav-icon">
+                <i class="bi bi-bell-fill"></i>
+                <span id="contadorSolicitudes" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">
+                    0
                 </span>
             </button>
 
-            <button id="btnLogout" class="btn btn-danger">
-                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+            <button id="btnLogout" class="btn-logout-nav">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Salir</span>
             </button>
         </div>
     </nav>
 
-    <!-- PANEL DE SOLICITUDES -->
     <div id="panelSolicitudes">
-        <h5 class="fw-bold text-white mb-3">Solicitudes de Invitados</h5>
-        <div id="listaSolicitudes"></div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold m-0"><i class="bi bi-person-plus"></i> Solicitudes</h5>
+            <small class="text-muted">Pendientes</small>
+        </div>
+        <div id="listaSolicitudes">
+            <p class="text-muted text-center py-3">Cargando...</p>
+        </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="container py-4">
+    <div class="container mt-4">
 
-        <!-- CARD REGISTRO -->
-        <div class="glass-card p-4 mb-4">
-            <h4 class="fw-bold mb-3">Registrar Nuevo Usuario</h4>
+        <div class="row g-4">
+            
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-primary mb-4">
+                            <i class="bi bi-person-add"></i> Nuevo Usuario
+                        </h5>
 
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <input type="text" id="nombre" class="form-control" placeholder="Nombre completo">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="small text-muted fw-bold">Nombre Completo</label>
+                                <input type="text" id="nombre" class="form-control bg-light border-0" placeholder="Ej. Juan Pérez">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Correo</label>
+                                <input type="email" id="email" class="form-control bg-light border-0" placeholder="correo@ejemplo.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Contraseña</label>
+                                <input type="password" id="password" class="form-control bg-light border-0" placeholder="Mínimo 6 caracteres">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Rol</label>
+                                <select id="rol" class="form-select bg-light border-0">
+                                    <option value="" disabled selected>Seleccionar...</option>
+                                    <option value="estudiante">Estudiante</option>
+                                    <option value="profesor">Profesor</option>
+                                    <option value="director">Director</option>
+                                    <option value="seguridad">Seguridad</option>
+                                    <option value="admin">Administrador</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Matrícula / ID</label>
+                                <input type="text" id="matricula" class="form-control bg-light border-0" placeholder="ID Único">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Tipo Vehículo</label>
+                                <select id="tipoVehiculo" class="form-select bg-light border-0">
+                                    <option value="carro" selected>Carro</option>
+                                    <option value="moto">Moto</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Placa</label>
+                                <input type="text" id="placa" class="form-control bg-light border-0" placeholder="Placa">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Estacionamiento</label>
+                                <select id="estacion" class="form-select bg-light border-0">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small text-muted fw-bold">Categoría</label>
+                                <select id="categoria" class="form-select bg-light border-0">
+                                    <option value="general">General</option>
+                                    <option value="profesor">Profesor</option>
+                                    <option value="moto">Moto</option>
+                                    <option value="director">Director</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button onclick="crearUsuario()" class="btn btn-primary w-100 rounded-pill fw-bold">
+                                    <i class="bi bi-save me-2"></i> Registrar Usuario
+                                </button>
+                                <p id="msg" class="text-center mt-2 small fw-bold"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="col-md-6">
-                    <input type="email" id="email" class="form-control" placeholder="Correo electrónico">
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <h5 class="fw-bold text-secondary m-0">
+                            <i class="bi bi-people-fill"></i> Directorio
+                        </h5>
+                        
+                        <div class="input-group" style="max-width: 300px;">
+                            <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
+                            <input type="text" id="buscador" class="form-control bg-light border-0" placeholder="Buscar...">
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="d-flex gap-2 mb-3">
+                            <select id="filtroRol" class="form-select form-select-sm w-auto border-0 bg-light">
+                                <option value="">Todos los Roles</option>
+                                <option value="estudiante">Estudiantes</option>
+                                <option value="profesor">Profesores</option>
+                                <option value="seguridad">Seguridad</option>
+                            </select>
+                            <select id="filtroEstacion" class="form-select form-select-sm w-auto border-0 bg-light">
+                                <option value="">Todos los Estac.</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                            </select>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light small text-muted">
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Rol</th>
+                                        <th>Auto</th>
+                                        <th>Ubicación</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaUsuarios" class="small">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="col-md-6">
-                    <input type="password" id="password" class="form-control" placeholder="Contraseña inicial">
+        </div>
+    </div>
+
+    <div id="alertContainer"></div>
+
+    <div id="modalEditar" class="modal" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Editar Usuario</h5>
+                    <button type="button" class="btn-close" onclick="cerrarModal()"></button>
                 </div>
-
-                <div class="col-md-6">
-                    <select id="rol" class="form-select">
-                        <option value="" disabled selected>Selecciona Rol</option>
+                <div class="modal-body">
+                    <input type="text" id="editNombre" class="form-control mb-2" placeholder="Nombre">
+                    <input type="text" id="editMatricula" class="form-control mb-2" placeholder="Matrícula">
+                    <input type="text" id="editPlaca" class="form-control mb-2" placeholder="Placa">
+                    <select id="editRol" class="form-select mb-2">
                         <option value="estudiante">Estudiante</option>
                         <option value="profesor">Profesor</option>
                         <option value="director">Director</option>
-                        <option value="invitado">Invitado</option>
                         <option value="seguridad">Seguridad</option>
-                        <option value="admin">Administrador</option>
                     </select>
-                </div>
-
-                <div class="col-md-6">
-                    <select id="tipoVehiculo" class="form-select">
-                        <option value="" disabled selected>Tipo Vehículo</option>
-                        <option value="carro">Carro</option>
-                        <option value="moto">Moto</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <select id="estacion" class="form-select">
-                        <option value="" disabled selected>Estacionamiento</option>
+                    <select id="editEstacion" class="form-select mb-2">
                         <option value="A">A</option>
                         <option value="B">B</option>
                     </select>
-                </div>
-
-                <div class="col-md-6">
-                    <select id="categoria" class="form-select">
-                        <option value="" disabled selected>Categoría</option>
+                    <select id="editCategoria" class="form-select mb-2">
                         <option value="general">General</option>
                         <option value="profesor">Profesor</option>
+                        <option value="director">Director</option>
                         <option value="moto">Moto</option>
-                        <option value="director">Director</option>
                     </select>
                 </div>
-
-                <div class="col-md-6">
-                    <input type="text" id="matricula" class="form-control" placeholder="Matrícula / ID">
-                </div>
-
-                <div class="col-md-6">
-                    <input type="text" id="placa" class="form-control" placeholder="Placa del vehículo">
-                </div>
-            </div>
-
-            <button onclick="crearUsuario()" class="btn btn-primary w-100 mt-3">
-                <i class="bi bi-person-plus"></i> Crear Usuario
-            </button>
-
-            <p id="msg" class="text-center mt-2"></p>
-        </div>
-
-        <!-- BUSCADOR -->
-        <div class="glass-card p-3 mb-3">
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <input type="text" id="buscador" class="form-control" placeholder="Buscar usuario...">
-                </div>
-
-                <div class="col-md-3">
-                    <select id="filtroRol" class="form-select">
-                        <option value="">Rol</option>
-                        <option value="estudiante">Estudiante</option>
-                        <option value="profesor">Profesor</option>
-                        <option value="director">Director</option>
-                        <option value="invitado">Invitado</option>
-                        <option value="seguridad">Seguridad</option>
-                        <option value="admin">Administrador</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3">
-                    <select id="filtroEstacion" class="form-select">
-                        <option value="">Estac.</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                    </select>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="guardarEdicion()">Guardar Cambios</button>
                 </div>
             </div>
         </div>
-
-        <!-- TABLA -->
-        <div class="glass-card p-4">
-            <h4 class="fw-bold mb-3">Usuarios Registrados</h4>
-
-            <div class="table-responsive">
-                <table class="table table-dark table-hover table-striped rounded overflow-hidden">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Rol</th>
-                            <th>Matrícula</th>
-                            <th>Vehículo</th>
-                            <th>Estacionamiento</th>
-                            <th>Categoría</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaUsuarios"></tbody>
-                </table>
-            </div>
-        </div>
-
     </div>
-
-    <!-- Contenedor de alertas -->
-    <div id="alertContainer"></div>
 
     <script type="module" src="js/admin.js"></script>
 </body>
