@@ -1,56 +1,147 @@
-        body {
-            font-family: Arial;
-            background: #f3f3f3;
-            margin: 0;
-        }
+/* ======== FONDO PROFESIONAL ======== */
+body {
+    font-family: "Poppins", Arial, sans-serif;
 
-        header {
-            background: #0033aa;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 1.4rem;
-        }
+    /* Imagen sólida como fondo */
+    background: 
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url("../img/parkeo.png") center top no-repeat;
 
-        .container {
-            padding: 20px;
-        }
+    background-size: contain;   /* 👉 ahora no se deforma */
+    background-color: #0d1b2a;  /* 👉 relleno elegante alrededor */
+    background-attachment: fixed;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px #0003;
-            margin-bottom: 30px;
-        }
+/* ======== TARJETAS GLASS ======== */
+.glass-card {
+    background: rgba(255, 255, 255, 0.12); /* más tenue, deja ver el logo */
+    backdrop-filter: blur(8px);            /* reduce blur */
+    border-radius: 20px;
+    padding: 25px;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+}
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-        }
 
-        button {
-            padding: 12px;
-            background: #0066ff;
-            color: white;
-            border: none;
-            margin-top: 10px;
-            cursor: pointer;
-            width: 100%;
-        }
+/* Tabla elegante */
+.table {
+    border-radius: 12px !important;
+    overflow: hidden;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
+/* Modal glass */
+.custom-modal {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:#0007;
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
 
-        th, td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
+.modal-content-glass {
+    background: rgba(255,255,255,0.15);
+    padding:20px;
+    backdrop-filter: blur(10px);
+    width:400px;
+    border-radius:15px;
+    color:white;
+}
 
-        th {
-            background: #eee;
-        }
+/* Inputs y selects */
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Botones */
+.btn {
+    border-radius: 8px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(0, 40, 85, 0.85) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Corrección tablas oscuras */
+.table-dark {
+    --bs-table-bg: rgba(0,0,0,0.45);
+}
+
+/* Sombras */
+.shadow-lg {
+    box-shadow: 0 0 20px #0005 !important;
+}
+/* ===== PANEL DE SOLICITUDES ===== */
+.solicitudes-panel {
+    position: fixed;
+    top: 80px;
+    right: 25px;
+    width: 330px;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    color: white;
+    display: none;
+    max-height: 75vh;
+    overflow-y: auto;
+    box-shadow: 0 0 25px #0008;
+}
+
+.solicitud-card {
+    background: rgba(255,255,255,0.08);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.solicitud-btn {
+    width: 48%;
+}
+/* =========================================
+   ALERTAS FLOTANTES (para panel Admin)
+   ========================================= */
+
+.alert-container {
+    position: fixed;
+    top: 20px;              /* Separación desde arriba */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;          /* Siempre por encima */
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    pointer-events: none;   /* No bloquea clics del formulario */
+}
+
+.alert-box {
+    background: var(--bg-card);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-left: 6px solid var(--primary);
+    font-weight: 600;
+    color: var(--text-main);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.alert-error {
+    border-left-color: var(--danger);
+    color: var(--danger);
+}
+
+.alert-success {
+    border-left-color: var(--success);
+    color: var(--success);
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+}

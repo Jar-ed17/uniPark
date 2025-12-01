@@ -1,11 +1,12 @@
 import { auth, db } from "./firebase-config.js";
 
-import { 
-    signInWithEmailAndPassword 
+import {
+    signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
-import { 
-    doc, getDoc 
+import {
+    doc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 const btnLogin = document.getElementById("btnLogin");
@@ -23,11 +24,12 @@ async function login() {
     }
 
     try {
-        // 1. Iniciar sesión con Firebase Authentication
+
+        // 1. Iniciar sesión
         const userCredential = await signInWithEmailAndPassword(auth, correo, password);
         const uid = userCredential.user.uid;
 
-        // 2. Consultar datos del usuario en Firestore
+        // 2. Obtener datos del usuario
         const ref = doc(db, "users", uid);
         const snap = await getDoc(ref);
 
@@ -37,18 +39,26 @@ async function login() {
         }
 
         const userData = snap.data();
+        const rol = userData.rol;
 
         // 3. Redirección según rol
-        if (userData.rol === "admin") {
+        if (rol === "admin") {
             window.location.href = "admin-dashboard.html";
-        } 
-        else if (userData.rol === "seguridad") {
+        }
+        else if (rol === "seguridad") {
             window.location.href = "guard-dashboard.html";
         }
-        else if (userData.rol === "estudiante") {
+        else if (rol === "estudiante") {
             window.location.href = "student-dashboard.html";
         }
-        else {
+        else if (rol === "profesor") {
+            window.location.href = "profesor-dashboard.html";
+        }
+        else if (rol === "director") {
+    window.location.href = "director-dashboard.html";
+  }
+
+        else {  
             msg.textContent = "Rol no válido ❌";
         }
 

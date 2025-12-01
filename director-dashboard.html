@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pase Director | UniPark</title>
+
+    <link rel="stylesheet" href="css/stylesDirector.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+
+<header class="main-header">
+    <h1>Pase de Director</h1>
+    <button id="btnLogout" class="logout-btn">Cerrar Sesión</button>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <div id="infoDirector" class="info">Cargando datos...</div>
+
+        <div id="qr-container" class="qr-box"></div>
+
+        <button id="btnRegenerar" class="regen-btn">🔄 Regenerar Código</button>
+    </div>
+
+    <div class="card">
+        <h3>Espacio Exclusivo del Director</h3>
+        <p id="cupos" class="cupos-num">--</p>
+    </div>
+
+</div>
+
+<script type="module" src="js/director.js"></script>
+
+</body>
+</html>

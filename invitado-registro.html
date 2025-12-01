@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Invitado | UniPark</title>
+    <link rel="stylesheet" href="css/registroInvitado.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Solicitud de Acceso como Invitado</h2>
+    <p class="text-muted">Rellena los campos para solicitar tu acceso al campus.</p>
+
+    <input id="nombre" type="text" placeholder="Nombre completo">
+    <input id="telefono" type="text" placeholder="Teléfono">
+    <input id="motivo" type="text" placeholder="Motivo de visita">
+    <input id="visita" type="text" placeholder="Persona o departamento que visitas">
+    
+ <label>Fecha y hora aproximada</label>
+<input 
+    type="datetime-local" 
+    id="fecha" 
+    class="form-control"
+    required>
+
+
+    <textarea id="observaciones" placeholder="Observaciones (opcional)"></textarea>
+
+    <label>Tipo de Vehículo (si trae)</label>
+<select id="vehiculo" class="form-select" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="carro">Carro</option>
+    <option value="moto">Moto</option>
+    <option value="ninguno">Ninguno</option>
+</select>
+
+
+    <button id="btnEnviar">Enviar Solicitud</button>
+
+    <p id="msg"></p>
+</div>
+<div id="esperaContainer" style="
+    display:none;
+    text-align:center;
+    margin-top:20px;
+">
+    <h3 style="color:white;">Solicitud enviada</h3>
+    <p style="color:#66b5ff;">Esperando aprobación del administrador…</p>
+
+    <div class="loader"></div>
+</div>
+
+<style>
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin:auto;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<script type="module" src="js/invitado-registro.js"></script>
+
+</body>
+</html>

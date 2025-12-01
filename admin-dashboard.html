@@ -4,68 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | UniPark</title>
-    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ICONOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- CSS PERSONALIZADO -->
+    <link rel="stylesheet" href="css/stylesAdmin.css">
+
+    <style>
+        /* 🔔 Contenedor de alertas flotantes */
+        #alertContainer {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            width: 360px;
+            z-index: 5000 !important;
+        }
+
+        /* 🔔 Panel de solicitudes */
+        #panelSolicitudes {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 380px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: rgba(20, 20, 20, 0.92);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            z-index: 4500 !important;
+            display: none;
+            box-shadow: 0 0 20px rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .solicitud-card {
+            background: rgba(255,255,255,0.08);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            color: white;
+            border-left: 4px solid #0d6efd;
+        }
+
+        .solicitud-btns button {
+            width: 48%;
+        }
+    </style>
 </head>
 
-<body class="dashboard-layout">
+<body>
 
-<header class="main-header" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1 style="margin: 0;">Panel de Administrador</h1>
-    <button id="btnLogout" class="btn" style="width: auto; background-color: #d32f2f; padding: 10px 20px; font-size: 0.9rem;">
-        Cerrar Sesión
-    </button>
-</header>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-dark bg-primary px-4 py-3 shadow d-flex justify-content-between align-items-center">
 
-<div class="container">
+        <h3 class="text-white m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-shield-lock-fill"></i> Panel Administrador
+        </h3>
 
-    <div class="card">
-        <h3>Registrar Nuevo Usuario</h3>
+        <div class="d-flex align-items-center gap-3">
 
-        <input type="text" id="nombre" placeholder="Nombre completo">
-        <input type="email" id="email" placeholder="Correo electrónico">
-        <input type="password" id="password" placeholder="Contraseña inicial">
+            <!-- 🔔 ICONO DE SOLICITUDES -->
+            <button id="btnSolicitudes" class="btn btn-light position-relative">
+                <i class="bi bi-person-plus-fill"></i>  
+                <span id="contadorSolicitudes" 
+                      class="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-pill">
+                      0
+                </span>
+            </button>
 
-        <div style="display: flex; gap: 15px;">
-            <select id="rol">
-                <option value="" disabled selected>Selecciona Rol</option>
-                <option value="estudiante">Estudiante</option>
-                <option value="seguridad">Seguridad</option>
-                <option value="admin">Administrador</option>
-            </select>
-            
-            <select id="tipoVehiculo">
-                <option value="carro">Carro</option>
-                <option value="moto">Moto</option>
-            </select>
+            <button id="btnLogout" class="btn btn-danger">
+                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+            </button>
         </div>
+    </nav>
 
-        <input type="text" id="matricula" placeholder="Matrícula / ID">
-        <input type="text" id="placa" placeholder="Placa del vehículo">
-        
-        <button onclick="crearUsuario()" class="btn">Crear Usuario</button>
-        <p id="msg" style="text-align: center; margin-top: 10px;"></p>
+    <!-- PANEL DE SOLICITUDES -->
+    <div id="panelSolicitudes">
+        <h5 class="fw-bold text-white mb-3">Solicitudes de Invitados</h5>
+        <div id="listaSolicitudes"></div>
     </div>
 
-    <div class="card">
-        <h3>Usuarios Registrados</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Rol</th>
-                        <th>Matrícula</th>
-                        <th>Vehículo</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaUsuarios"></tbody>
-            </table>
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container py-4">
+
+        <!-- CARD REGISTRO -->
+        <div class="glass-card p-4 mb-4">
+            <h4 class="fw-bold mb-3">Registrar Nuevo Usuario</h4>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" id="nombre" class="form-control" placeholder="Nombre completo">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="email" id="email" class="form-control" placeholder="Correo electrónico">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="password" id="password" class="form-control" placeholder="Contraseña inicial">
+                </div>
+
+                <div class="col-md-6">
+                    <select id="rol" class="form-select">
+                        <option value="" disabled selected>Selecciona Rol</option>
+                        <option value="estudiante">Estudiante</option>
+                        <option value="profesor">Profesor</option>
+                        <option value="director">Director</option>
+                        <option value="invitado">Invitado</option>
+                        <option value="seguridad">Seguridad</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <select id="tipoVehiculo" class="form-select">
+                        <option value="" disabled selected>Tipo Vehículo</option>
+                        <option value="carro">Carro</option>
+                        <option value="moto">Moto</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <select id="estacion" class="form-select">
+                        <option value="" disabled selected>Estacionamiento</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <select id="categoria" class="form-select">
+                        <option value="" disabled selected>Categoría</option>
+                        <option value="general">General</option>
+                        <option value="profesor">Profesor</option>
+                        <option value="moto">Moto</option>
+                        <option value="director">Director</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="text" id="matricula" class="form-control" placeholder="Matrícula / ID">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="text" id="placa" class="form-control" placeholder="Placa del vehículo">
+                </div>
+            </div>
+
+            <button onclick="crearUsuario()" class="btn btn-primary w-100 mt-3">
+                <i class="bi bi-person-plus"></i> Crear Usuario
+            </button>
+
+            <p id="msg" class="text-center mt-2"></p>
         </div>
+
+        <!-- BUSCADOR -->
+        <div class="glass-card p-3 mb-3">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" id="buscador" class="form-control" placeholder="Buscar usuario...">
+                </div>
+
+                <div class="col-md-3">
+                    <select id="filtroRol" class="form-select">
+                        <option value="">Rol</option>
+                        <option value="estudiante">Estudiante</option>
+                        <option value="profesor">Profesor</option>
+                        <option value="director">Director</option>
+                        <option value="invitado">Invitado</option>
+                        <option value="seguridad">Seguridad</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select id="filtroEstacion" class="form-select">
+                        <option value="">Estac.</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA -->
+        <div class="glass-card p-4">
+            <h4 class="fw-bold mb-3">Usuarios Registrados</h4>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-hover table-striped rounded overflow-hidden">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Matrícula</th>
+                            <th>Vehículo</th>
+                            <th>Estacionamiento</th>
+                            <th>Categoría</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUsuarios"></tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
-</div>
+    <!-- Contenedor de alertas -->
+    <div id="alertContainer"></div>
 
-<script type="module" src="js/admin.js"></script>
+    <script type="module" src="js/admin.js"></script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Invitado | UniPark</title>
+    <link rel="stylesheet" href="css/registroInvitado.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Registro de Invitado</h2>
+    <p>Completa tus datos para solicitar acceso como visitante.</p>
+
+    <input type="text" id="nombre" placeholder="Nombre completo">
+    <input type="text" id="telefono" placeholder="Teléfono">
+    <input type="text" id="motivo" placeholder="Motivo de visita">
+    <input type="text" id="visita" placeholder="Persona o departamento a visitar">
+
+    <label>Fecha de visita</label>
+    <input type="datetime-local" id="fechaVisita">
+
+    <textarea id="observaciones" placeholder="Observaciones (opcional)"></textarea>
+
+    <button id="btnEnviar">Enviar Solicitud</button>
+
+    <p id="msg"></p>
+</div>
+
+<script type="module" src="js/registro-invitado.js"></script>
+
+</body>
+</html>

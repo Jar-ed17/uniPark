@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Invitado | UniPark</title>
+
+    <link rel="stylesheet" href="css/guest.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body class="guest-bg">
+
+    <div class="glass-card" style="max-width: 450px; margin:auto; padding:25px; text-align:center;">
+        
+        <h2 id="titulo">Bienvenido invitado</h2>
+        <p id="estado">Cargando información...</p>
+
+        <!-- NUEVO: CONTENEDOR STATUS -->
+        <div id="statusBox" style="margin:20px 0;"></div>
+
+        <!-- DATOS DEL INVITADO (solo si es aceptado) -->
+        <div id="datosInvitado" style="margin-top:20px; text-align:left; display:none;">
+            <p><b>Nombre:</b> <span id="dNombre"></span></p>
+            <p><b>Teléfono:</b> <span id="dTelefono"></span></p>
+            <p><b>Motivo:</b> <span id="dMotivo"></span></p>
+            <p><b>Visita a:</b> <span id="dVisita"></span></p>
+            <p><b>Fecha de Visita:</b> <span id="dFecha"></span></p>
+            <p><b>Vehículo:</b> <span id="dVehiculo"></span></p>
+        </div>
+
+        <!-- QR DEL INVITADO -->
+        <div id="qrContainer" style="margin-top:30px; display:none;">
+            <canvas id="qrCanvas"></canvas>
+        </div>
+
+        <!-- DATOS ELEGANTES DEL QR (estado: aceptado) -->
+        <div id="datosBox" style="margin-top:20px; display:none; text-align:left;"></div>
+
+        <!-- ANIMACIÓN DE ESPERA -->
+        <div id="espera" style="margin-top:25px; display:none;">
+            <div class="loader"></div>
+            <p>Esperando aprobación del administrador...</p>
+        </div>
+
+    </div>
+
+    <script type="module" src="js/guest-dashboard.js"></script>
+</body>
+</html>

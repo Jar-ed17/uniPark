@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pase de Profesor | UniPark</title>
+
+    <link rel="stylesheet" href="css/stylesProfesor.css" />
+
+    <!-- Librería para generar QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="main-header">
+        <h1>Mi Pase de Profesor</h1>
+
+        <button id="btnLogout" class="logout-btn">
+            Cerrar Sesión
+        </button>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="container">
+
+        <!-- TARJETA PRINCIPAL -->
+        <div class="card">
+
+            <!-- INFO DEL PROFESOR -->
+            <div id="infoProfesor" class="info">
+                Cargando datos...
+            </div>
+
+            <!-- CONTENEDOR QR -->
+            <div id="qr-container" class="qr-box"></div>
+
+            <!-- BOTÓN -->
+            <button id="btnRegenerar" class="regen-btn">
+                🔄 Regenerar Código
+            </button>
+        </div>
+
+        <!-- CUPOS -->
+        <div class="card">
+            <h3>Lugares Disponibles</h3>
+            <p id="cupos" class="cupos-num">--</p>
+        </div>
+
+    </div>
+
+    <script type="module" src="js/profesor.js"></script>
+
+</body>
+
+</html>

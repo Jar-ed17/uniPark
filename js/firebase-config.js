@@ -5,6 +5,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/fireba
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
+
 // 👉 REEMPLAZA valores por los tuyos EXACTOS
 export const firebaseConfig = {
     apiKey: "AIzaSyA0rLOKI_rmLN8gTOfDF9fshRvjo-Eoj6k",
