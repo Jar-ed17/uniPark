@@ -3,31 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Invitado | UniPark</title>
-    <link rel="stylesheet" href="css/registroInvitado.css">
+    <title>Registro Invitado | UniPark</title>
+    <!-- Vinculamos el CSS Maestro para mantener el diseño consistente -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- FontAwesome para iconos visuales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Ajuste específico para que el textarea se vea igual a los inputs */
+        textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+        textarea:focus {
+            border-color: var(--primary);
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 68, 255, 0.1);
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
-<body>
 
-<div class="container">
-    <h2>Registro de Invitado</h2>
-    <p>Completa tus datos para solicitar acceso como visitante.</p>
+<body class="centered-layout">
 
-    <input type="text" id="nombre" placeholder="Nombre completo">
-    <input type="text" id="telefono" placeholder="Teléfono">
-    <input type="text" id="motivo" placeholder="Motivo de visita">
-    <input type="text" id="visita" placeholder="Persona o departamento a visitar">
+    <div class="card login-card" style="max-width: 500px; text-align: left;">
+        
+        <!-- LOGO BRANDING (Igual que en el Login) -->
+        <div class="login-logo">
+            <span>UP</span> UniPark
+        </div>
 
-    <label>Fecha de visita</label>
-    <input type="datetime-local" id="fechaVisita">
+        <h2 style="margin-bottom: 10px; text-align: center;">Solicitud de Acceso como Invitado</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px; text-align: center;">
+            Rellena los campos para solicitar tu acceso al campus.
+        </p>
 
-    <textarea id="observaciones" placeholder="Observaciones (opcional)"></textarea>
+        <!-- FORMULARIO (IDs estrictos según tu repositorio) -->
+        
+        <!-- 1. Nombre -->
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
 
-    <button id="btnEnviar">Enviar Solicitud</button>
+        <!-- 2. Teléfono -->
+        <input type="text" id="telefono" placeholder="Teléfono" required>
 
-    <p id="msg"></p>
-</div>
+        <!-- 3. Motivo -->
+        <input type="text" id="motivo" placeholder="Motivo de visita" required>
 
-<script type="module" src="js/registro-invitado.js"></script>
+        <!-- 4. Visita (Persona/Depto) -->
+        <input type="text" id="visita" placeholder="Persona o departamento que visitas" required>
+
+        <!-- 5. Fecha -->
+        <label for="fecha">Fecha y hora aproximada</label>
+        <input type="datetime-local" id="fecha" required>
+
+        <!-- 6. Observaciones (Opcional) -->
+        <!-- Usamos input o textarea, el script toma .value igual. Usamos textarea por el placeholder de la imagen -->
+        <textarea id="observaciones" placeholder="Observaciones (opcional)"></textarea>
+
+        <!-- 7. Vehículo -->
+        <label for="vehiculo">Tipo de Vehículo (si trae)</label>
+        <select id="vehiculo">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="carro">Carro</option>
+            <option value="moto">Moto</option>
+            <option value="ninguno">Ninguno</option>
+        </select>
+
+        <!-- BOTÓN DE ENVÍO -->
+        <button id="btnEnviar" class="btn-login" style="margin-top: 10px;">
+            Enviar Solicitud
+        </button>
+
+        <!-- Mensaje de error/éxito -->
+        <p id="msg" class="msg-error" style="text-align: center; margin-top: 15px;"></p>
+
+        <!-- Loader oculto (Tu script original no lo usa visiblemente en el DOM, pero lo dejamos por si acaso lo integras luego) -->
+        <div id="esperaContainer" style="display:none; text-align:center; margin-top:20px;">
+            <div class="loader" style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">Procesando solicitud...</p>
+        </div>
+
+        <!-- Enlace para volver -->
+        <p style="margin-top: 25px; text-align: center; font-size: 0.9rem;">
+            <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">
+                <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+            </a>
+        </p>
+
+    </div>
+
+    <!-- Script del controlador -->
+    <script type="module" src="js/invitado-registro.js"></script>
+
+    <!-- Keyframes para el loader en línea por si el CSS externo falla en cargarlo -->
+    <style>
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 
 </body>
 </html>

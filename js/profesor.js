@@ -84,9 +84,17 @@ onSnapshot(doc(db, "lugares", "parqueo-principal"), (snap) => {
 });
 
 // =========================================
-// Cerrar sesión
+// Cerrar sesión (Función común)
 // =========================================
-document.getElementById("btnLogout").addEventListener("click", async () => {
-    await signOut(auth);
-    window.location.href = "login.html";
-});
+async function cerrarSesion() {
+    try {
+        await signOut(auth);
+        window.location.href = "login.html";
+    } catch (error) {
+        console.error("Error al cerrar sesión:", error);
+    }
+}
+
+// Asignar eventos a ambos botones si existen
+if (btnLogoutDesktop) btnLogoutDesktop.addEventListener("click", cerrarSesion);
+if (btnLogoutMobile) btnLogoutMobile.addEventListener("click", cerrarSesion);

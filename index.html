@@ -3,26 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniPark | Inicio</title>
+    <title>UniPark | Control Inteligente</title>
+    <!-- CSS Maestro -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="centered-layout">
-    <div class="card login-card">
-        <h1 style="color: var(--primary); margin-bottom: 10px;">UniPark</h1>
-        <p style="margin-bottom: 30px; color: var(--text-muted);">
-            Sistema Inteligente de Control de Accesos
-        </p>
+<body class="dashboard-layout">
 
-        <button class="btn" onclick="location.href='login.html'">
-            Iniciar Sesión
-        </button>
-        <p class="text-center mt-3">
-    <a href="invitado-registro.html" class="guest-link">
-        Solicitar acceso como invitado
-    </a>
-</p>
+    <!-- NAV DESKTOP -->
+    <nav class="desktop-nav">
+        <div class="logo">
+            <span>UP</span> UniPark
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active">Inicio</a>
+            <a href="#main-footer" class="nav-link" onclick="highlightFooter()">Contacto</a>
+            <!-- Enlace directo al registro de invitados -->
+            <a href="invitado-registro.html" class="nav-link">Invitados</a>
+            <a href="login.html" class="nav-link" style="background: rgba(255,255,255,0.1);">Iniciar Sesión</a>
+        </div>
+    </nav>
 
+    <!-- HERO SECTION -->
+    <div class="container">
+        <section class="hero-section">
+            <div class="hero-text">
+                <div style="text-transform: uppercase; color: var(--primary); font-weight: bold; margin-bottom: 10px; letter-spacing: 1px;">
+                    Sistema Integral de Accesos
+                </div>
+                <h1>Gestión Vehicular Inteligente y Segura</h1>
+                <p>
+                    UniPark optimiza el flujo de entrada y salida del campus mediante tecnología QR dinámica. 
+                    Gestiona estudiantes, docentes, directivos e invitados en una sola plataforma.
+                </p>
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <button class="cta-button" onclick="location.href='login.html'">
+                        Acceso Usuarios
+                    </button>
+                    <button class="cta-button" onclick="location.href='invitado-registro.html'" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
+                        Solicitar Pase Invitado
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <!-- Imagen ilustrativa -->
+                <img src="img/parkeo.png" alt="Control de Acceso UniPark" onerror="this.src='https://placehold.co/600x400/e0e0e0/333?text=UniPark+System'">
+            </div>
+        </section>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer" id="main-footer">
+        <div class="social-icons">
+            <a href="#" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-icon insta"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <p class="footer-copy">
+            © 2025 UniPark | Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <!-- NAV MOBILE -->
+    <nav class="mobile-nav">
+        <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i></a>
+        <a href="invitado-registro.html" class="nav-link"><i class="fa-solid fa-user-plus"></i></a>
+        <a href="login.html" class="nav-link"><i class="fa-solid fa-right-to-bracket"></i></a>
+    </nav>
+
+    <script>
+        function highlightFooter() {
+            const footer = document.getElementById('main-footer');
+            footer.classList.remove('footer-highlight');
+            void footer.offsetWidth;
+            footer.classList.add('footer-highlight');
+        }
+    </script>
+
 </body>
 </html>
