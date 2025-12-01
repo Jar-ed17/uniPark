@@ -5,23 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | Control de Accesos Campus</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- FontAwesome para iconos opcionales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="centered-layout">
 
     <div class="card login-card">
-        <h2>Bienvenido</h2>
+        
+        <!-- LOGO BRANDING -->
+        <div class="login-logo">
+            <span>UP</span> UniPark
+        </div>
+
+        <h2 style="margin-bottom: 5px;">Bienvenido</h2>
         <p style="color: var(--text-muted); margin-bottom: 30px;">
             Ingresa tus credenciales para acceder
         </p>
 
+        <!-- INPUTS -->
         <input type="email" id="email" placeholder="Correo electrónico" />
         <input type="password" id="password" placeholder="Contraseña" />
 
-        <button id="btnLogin" class="btn">Ingresar</button>
+        <!-- BOTÓN CON ANIMACIÓN MEJORADA -->
+        <button id="btnLogin" class="btn-login">
+            Ingresar
+        </button>
 
         <p id="msg" class="msg-error"></p>
         <p id="errorMsg" class="msg-error"></p>
+
+        <!-- Enlace auxiliar (Opcional) -->
+        <p style="margin-top: 20px; font-size: 0.9rem;">
+            <a href="index.html" style="color: var(--primary); text-decoration: none;">← Volver al inicio</a>
+        </p>
     </div>
 
     <script type="module" src="js/auth.js"></script>

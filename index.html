@@ -3,20 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniPark | Inicio</title>
+    <title>UniPark | Control Inteligente</title>
+    <!-- CSS Propio -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- FontAwesome para los iconos del footer -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="centered-layout">
-    <div class="card login-card">
-        <h1 style="color: var(--primary); margin-bottom: 10px;">UniPark</h1>
-        <p style="margin-bottom: 30px; color: var(--text-muted);">
-            Sistema Inteligente de Control de Accesos
-        </p>
+<body class="dashboard-layout">
 
-        <button class="btn" onclick="location.href='login.html'">
-            Iniciar Sesión
-        </button>
+    <!-- =======================================
+         NAVBAR SUPERIOR (Solo Desktop)
+         ======================================= -->
+    <nav class="desktop-nav">
+        <div class="logo">
+            <span>UP</span> UniPark
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active">Home</a>
+            <!-- BOTÓN MODIFICADO: Redirecciona al footer y activa animación -->
+            <a href="#main-footer" class="nav-link" onclick="highlightFooter()">Nosotros</a>
+            <!-- <a href="#" class="nav -link">Servicios</a> -->
+            <a href="login.html" class="nav-link" style="background: rgba(255,255,255,0.1);">Login</a>
+        </div>
+    </nav>
+
+    <!-- =======================================
+         CONTENIDO PRINCIPAL (Hero Section)
+         ======================================= -->
+    <div class="container">
+        <section class="hero-section">
+            
+            <!-- Texto de Incentivo -->
+            <div class="hero-text">
+                <div style="text-transform: uppercase; color: var(--primary); font-weight: bold; margin-bottom: 10px; letter-spacing: 1px;">
+                    Innovación en tu Campus
+                </div>
+                <h1>Acceso Vehicular Seguro y Rápido</h1>
+                <p>
+                    Olvídate de las tarjetas perdidas y las largas filas. 
+                    UniPark utiliza tecnología QR dinámica para gestionar 
+                    el estacionamiento de estudiantes, docentes y seguridad 
+                    de manera eficiente.
+                </p>
+                <button class="cta-button" onclick="location.href='login.html'">
+                    Ingresar al Sistema
+                </button>
+            </div>
+
+            <!-- Ilustración (Espacio para Imagen) -->
+            <div class="hero-image">
+                <img src="lp.jpg" alt="Ilustración UniPark">
+            </div>
+
+        </section>
     </div>
+
+    <!-- =======================================
+         FOOTER (Con ID para anclaje)
+         ======================================= -->
+    <footer class="main-footer" id="main-footer">
+        <div class="social-icons">
+            <a href="#" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-icon insta"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon x"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon yt"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        
+        <p class="footer-copy">
+            © 2025 Ola Cancún | El heraldo de México Q.Roo | All rights reserved | Diseñado por Jared Reyes
+        </p>
+        
+        <a href="#" class="footer-contact">Contáctanos</a>
+    </footer>
+
+    <!-- =======================================
+         NAVBAR INFERIOR (Solo Mobile)
+         ======================================= -->
+    <nav class="mobile-nav">
+        <!-- Home -->
+        <a href="#" class="nav-link active" style="padding: 8px 20px;">
+            <i class="fa-solid fa-house" style="font-size: 1.2rem;"></i>
+        </a>
+        
+        <!-- Login / Perfil -->
+        <a href="login.html" class="nav-link" style="padding: 8px 20px;">
+            <i class="fa-solid fa-user" style="font-size: 1.2rem;"></i>
+        </a>
+        
+        <!-- Contacto (Modificado para resaltar footer también) -->
+        <a href="#main-footer" class="nav-link" style="padding: 8px 20px;" onclick="highlightFooter()">
+            <i class="fa-solid fa-phone" style="font-size: 1.2rem;"></i>
+        </a>
+    </nav>
+
+    <!-- Script para la animación del footer -->
+    <script>
+        function highlightFooter() {
+            const footer = document.getElementById('main-footer');
+            
+            // Reiniciamos la animación removiendo la clase y forzando un 'reflow'
+            footer.classList.remove('footer-highlight');
+            void footer.offsetWidth; // Truco para reiniciar animación CSS
+            
+            // Agregamos la clase que tiene la animación
+            footer.classList.add('footer-highlight');
+        }
+    </script>
+
 </body>
 </html>
