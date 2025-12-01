@@ -19,39 +19,39 @@
         </div>
         <div class="nav-links">
             <a href="#" class="nav-link active">Inicio</a>
+            <!-- El botón Contacto activa la animación dorada -->
             <a href="#main-footer" class="nav-link" onclick="highlightFooter()">Contacto</a>
             <!-- Enlace directo al registro de invitados -->
             <a href="invitado-registro.html" class="nav-link">Invitados</a>
-            <a href="login.html" class="nav-link" style="background: rgba(255,255,255,0.1);">Iniciar Sesión</a>
+            <a href="login.html" class="btn-login" style="padding: 8px 20px; font-size: 0.9rem;">Iniciar Sesión</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <div class="container">
-        <section class="hero-section">
-            <div class="hero-text">
+        <section class="hero-section" style="display: flex; align-items: center; justify-content: space-between; min-height: 70vh; gap: 40px;">
+            <div class="hero-text" style="flex: 1;">
                 <div style="text-transform: uppercase; color: var(--primary); font-weight: bold; margin-bottom: 10px; letter-spacing: 1px;">
-                    Sistema Integral de Accesos
+                    Innovación en tu Campus
                 </div>
-                <h1>Gestión Vehicular Inteligente y Segura</h1>
-                <p>
+                <h1 style="font-size: 3rem; line-height: 1.2; margin-bottom: 20px;">Gestión Vehicular Inteligente</h1>
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px;">
                     UniPark optimiza el flujo de entrada y salida del campus mediante tecnología QR dinámica. 
-                    Gestiona estudiantes, docentes, directivos e invitados en una sola plataforma.
+                    Gestiona estudiantes, docentes, directivos e invitados en una sola plataforma segura.
                 </p>
                 
-                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <button class="cta-button" onclick="location.href='login.html'">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: flex-start;">
+                    <a href="login.html" class="cta-button">
                         Acceso Usuarios
-                    </button>
-                    <button class="cta-button" onclick="location.href='invitado-registro.html'" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
-                        Solicitar Pase Invitado
-                    </button>
+                    </a>
+                    <a href="invitado-registro.html" class="cta-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
+                        Pase Invitado
+                    </a>
                 </div>
             </div>
 
-            <div class="hero-image">
-                <!-- Imagen ilustrativa -->
-                <img src="img/parkeo.png" alt="Control de Acceso UniPark" onerror="this.src='https://placehold.co/600x400/e0e0e0/333?text=UniPark+System'">
+            <div class="hero-image" style="flex: 1; display: flex; justify-content: center;">
+                <img src="img/parkeo.png" alt="Control de Acceso UniPark" onerror="this.src='https://placehold.co/600x400?text=UniPark+System'" style="max-width: 100%; border-radius: 20px; box-shadow: var(--shadow);">
             </div>
         </section>
     </div>
@@ -72,6 +72,7 @@
     <nav class="mobile-nav">
         <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i></a>
         <a href="invitado-registro.html" class="nav-link"><i class="fa-solid fa-user-plus"></i></a>
+        <a href="#main-footer" class="nav-link" onclick="highlightFooter()"><i class="fa-solid fa-phone"></i></a>
         <a href="login.html" class="nav-link"><i class="fa-solid fa-right-to-bracket"></i></a>
     </nav>
 
@@ -79,10 +80,10 @@
         function highlightFooter() {
             const footer = document.getElementById('main-footer');
             footer.classList.remove('footer-highlight');
-            void footer.offsetWidth;
+            void footer.offsetWidth; // Trigger reflow
             footer.classList.add('footer-highlight');
         }
     </script>
 
 </body>
-</html>
+</html>     

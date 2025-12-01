@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login | Control de Accesos Campus</title>
-    <!-- Vinculamos los estilos maestros -->
+    <title>Login | UniPark</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -15,64 +13,40 @@
     <div class="card login-card">
         
         <!-- LOGO BRANDING -->
-        <div class="login-logo">
-            <span>UP</span> UniPark
+        <div class="login-logo" style="margin-bottom: 20px; font-size: 2rem; font-weight: bold; color: var(--text-main); display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <span style="background: var(--primary); color: white; padding: 4px 12px; border-radius: 8px;">UP</span> UniPark
         </div>
 
         <h2 style="margin-bottom: 5px;">Bienvenido</h2>
         <p style="color: var(--text-muted); margin-bottom: 30px;">
-            Ingresa tus credenciales para acceder
+            Ingresa tus credenciales
         </p>
 
-        <!-- INPUTS -->
-        <div class="input-group">
-            <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
-            <input type="email" id="email" placeholder="Correo electrónico" />
+        <!-- INPUTS CON ICONOS -->
+        <div style="position: relative;">
+            <i class="fa-solid fa-envelope" style="position: absolute; left: 15px; top: 15px; color: var(--text-muted);"></i>
+            <input type="email" id="email" placeholder="Correo electrónico" style="padding-left: 45px;" />
         </div>
         
-        <div class="input-group">
-            <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
-            <input type="password" id="password" placeholder="Contraseña" />
+        <div style="position: relative;">
+            <i class="fa-solid fa-lock" style="position: absolute; left: 15px; top: 15px; color: var(--text-muted);"></i>
+            <input type="password" id="password" placeholder="Contraseña" style="padding-left: 45px;" />
         </div>
 
-        <!-- BOTÓN CON ANIMACIÓN -->
-        <button id="btnLogin" class="btn-login">
+        <!-- BOTÓN ANIMADO -->
+        <button id="btnLogin" class="btn-login" style="width: 100%;">
             Ingresar
         </button>
 
-        <!-- Mensajes de error/estado -->
-        <p id="msg" class="msg-info" style="margin-top: 15px; display: none;"></p>
-        <p id="errorMsg" class="msg-error" style="margin-top: 10px;"></p>
+        <p id="msg" class="msg-error" style="margin-top: 15px; text-align: center;"></p>
 
-        <!-- Enlace auxiliar -->
         <p style="margin-top: 25px; font-size: 0.9rem;">
-            <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">
+            <a href="index.html" style="color: var(--primary); text-decoration: none;">
                 <i class="fa-solid fa-arrow-left"></i> Volver al inicio
             </a>
         </p>
     </div>
 
-    <!-- Tu script de autenticación original -->
     <script type="module" src="js/auth.js"></script>
-    
-    <style>
-        /* Pequeños ajustes extra para iconos en inputs */
-        .input-group {
-            position: relative;
-            margin-bottom: 15px;
-        }
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            pointer-events: none;
-        }
-        .input-group input {
-            padding-left: 40px; /* Espacio para el icono */
-            margin-bottom: 0;
-        }
-    </style>
 </body>
 </html>

@@ -2,35 +2,30 @@
    1. VARIABLES Y RESET
    ========================================= */
 :root {
-    --primary: #0044ff;       /* Azul eléctrico principal */
-    --primary-dark: #0033cc;  /* Azul oscuro hover */
-    --secondary: #002a80;     /* Azul marino header */
-    --accent: #00d4ff;        /* Cian para detalles */
-    --bg-body: #f4f6f9;       /* Fondo gris suave */
-    --bg-card: #ffffff;       /* Blanco tarjetas */
-    --nav-bg: #1e1e24;        /* Fondo oscuro para Navbars */
+    --primary: #0044ff;       /* Azul eléctrico */
+    --primary-dark: #0033cc;
+    --secondary: #002a80;     /* Azul marino */
+    --accent: #00d4ff;        /* Cian */
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --nav-bg: #1e1e24;        /* Fondo Navbars */
     --text-main: #333333;
-    --text-light: #ffffff;    /* Texto blanco para navs */
     --text-muted: #666666;
     --danger: #d32f2f;
     --success: #2e7d32;
-    --radius: 10px;
+    --radius: 12px;
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    
-    /* Variables Footer */
+    /* Footer */
     --footer-bg: #1f1f1f;
     --footer-text: #cccccc;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-html {
-    /* Esto permite que al dar clic en el link, baje suavemente */
-    scroll-behavior: smooth;
+/* REGLA GLOBAL: Quitar subrayado a TODOS los enlaces por defecto */
+a {
+    text-decoration: none !important;
 }
 
 body {
@@ -46,18 +41,18 @@ body {
 /* =========================================
    2. LAYOUTS
    ========================================= */
+.dashboard-layout {
+    display: block;
+    padding-top: 80px;      /* Espacio para desktop nav */
+    padding-bottom: 100px;  /* Espacio para mobile nav */
+}
+
 .centered-layout {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    width: 100%;
     padding: 20px;
-}
-
-.dashboard-layout {
-    display: block;
-    padding-top: 80px; /* Espacio para navbar desktop */
 }
 
 .container {
@@ -67,26 +62,8 @@ body {
 }
 
 /* =========================================
-   3. NUEVOS NAVBARS (Desktop & Mobile)
+   3. NAVBARS (Desktop & Mobile)
    ========================================= */
-
-/* --- Estilos Generales de Links de Navegación --- */
-.nav-link {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-}
-
-.nav-link:hover, .nav-link.active {
-    background-color: var(--primary);
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 68, 255, 0.3);
-}
-
-/* --- A. NAVBAR DESKTOP (Barra Superior) --- */
 .desktop-nav {
     display: flex;
     justify-content: space-between;
@@ -94,288 +71,200 @@ body {
     background-color: var(--nav-bg);
     padding: 15px 40px;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 0; left: 0; width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    color: white;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
     color: white;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
 }
-
 .logo span {
     background: var(--primary);
     padding: 2px 8px;
     border-radius: 4px;
 }
 
-/* --- B. NAVBAR MOBILE (Barra Inferior Flotante) --- */
+.nav-links { display: flex; gap: 20px; align-items: center; }
+
 .mobile-nav {
     display: none;
     position: fixed;
-    bottom: 20px;
-    left: 50%;
+    bottom: 20px; left: 50%;
     transform: translateX(-50%);
     background-color: var(--nav-bg);
-    width: 90%;
-    max-width: 400px;
+    width: 90%; max-width: 400px;
     height: 70px;
     border-radius: 50px;
     justify-content: space-around;
     align-items: center;
-    padding: 0 10px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     z-index: 1000;
+    padding: 0 10px;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 1.2rem; /* Iconos más grandes */
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+.nav-link.active, .nav-link:hover { 
+    color: white; 
+    text-shadow: 0 0 10px var(--primary); 
+    text-decoration: none; /* Asegurar sin subrayado en hover */
 }
 
 /* =========================================
-   4. LANDING PAGE (Hero Section)
+   4. COMPONENTES GLOBALES
    ========================================= */
-.hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 70vh; /* Reducido un poco para dar espacio */
-    gap: 40px;
-    margin-bottom: 50px;
-}
-
-.hero-text {
-    flex: 1;
-    max-width: 500px;
-}
-
-.hero-text h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: #1a1a2e;
-}
-
-.hero-text p {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 30px;
-}
-
-.hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.hero-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
+.card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius);
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
+    margin-bottom: 20px;
 }
-.hero-image img:hover {
-    transform: scale(1.02);
-}
+.login-card { max-width: 400px; width: 100%; text-align: center; }
 
-/* Botón CTA del Index (Referencia) */
-.cta-button {
-    background: var(--primary);
+/* Botones Animados */
+.btn-login, .cta-button, .btn {
+    background-color: var(--primary);
     color: white;
-    padding: 15px 40px;
-    font-size: 1.1rem;
+    padding: 12px 24px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 0 10px 20px rgba(0, 68, 255, 0.2);
-    transition: transform 0.2s;
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    background: var(--primary-dark);
-}
-
-/* =========================================
-   5. ESTILOS ESPECÍFICOS PARA LOGIN (NUEVO)
-   ========================================= */
-
-/* Logo dentro del Login (Texto oscuro) */
-.login-logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--text-main);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 30px;
-}
-
-.login-logo span {
-    background: var(--primary);
-    color: white;
-    padding: 4px 14px;
-    border-radius: 8px;
-    font-size: 1.6rem;
+    transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 68, 255, 0.3);
+    text-align: center;
+    text-decoration: none !important; /* IMPORTANTE: Sin subrayado forzado */
     display: inline-block;
-    box-shadow: 0 4px 10px rgba(0,68,255,0.3);
+}
+.btn-login:hover, .cta-button:hover, .btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 68, 255, 0.4);
+    text-decoration: none !important; /* Sin subrayado al pasar el mouse */
 }
 
-/* Botón de Login (Hereda la animación del CTA) */
-.btn-login {
-    width: 100%; /* Ocupa todo el ancho disponible */
-    background: var(--primary);
+/* Inputs Modernos */
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    transition: 0.3s;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 68, 255, 0.1);
+}
+
+/* Etiquetas de Rol */
+.role-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
     color: white;
-    padding: 15px;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 30px; /* Redondeado tipo cápsula */
-    cursor: pointer;
     font-weight: bold;
-    box-shadow: 0 10px 20px rgba(0, 68, 255, 0.2);
-    transition: transform 0.2s, background 0.3s;
-    margin-top: 10px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.role-profesor { background-color: var(--secondary); } 
+.role-student { background-color: var(--primary); }    
+
+/* Info Items (Dashboard) */
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 1rem;
+}
+.info-item:last-child { border-bottom: none; }
+.info-label { font-weight: 600; color: var(--secondary); margin-right: 10px; min-width: 100px; }
+
+/* QR Box */
+.qr-box {
+    display: flex; justify-content: center; align-items: center;
+    padding: 15px; background: white;
+    border: 1px solid #eee; border-radius: var(--radius);
+    margin: 20px auto; width: fit-content;
 }
 
-.btn-login:hover {
-    transform: translateY(-3px); /* ¡La misma animación! */
-    background: var(--primary-dark);
-    box-shadow: 0 15px 25px rgba(0, 68, 255, 0.3);
+/* Cupos */
+.cupos-display {
+    font-size: 3rem; font-weight: 800; color: var(--primary); margin: 10px 0;
 }
 
-/* =========================================
-   6. FOOTER & ANIMACIÓN (Dorado)
-   ========================================= */
+/* Footer & Animación Dorada */
 .main-footer {
     background-color: var(--footer-bg);
     color: var(--footer-text);
-    padding: 50px 20px 100px 20px; /* Extra padding abajo para móvil */
+    padding: 50px 20px 80px 20px;
     text-align: center;
-    font-size: 0.9rem;
-    margin-top: auto; /* Empuja el footer al fondo si hay poco contenido */
-    position: relative;
-    border-top: 2px solid transparent; /* Preparado para la animación */
+    margin-top: auto;
+    border-top: 2px solid transparent;
 }
-
-/* Definición de la animación de resaltado DORADO */
-@keyframes glowFooter {
-    0% {
-        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        border-top-color: transparent;
-    }
-    20% {
-        box-shadow: 0 -10px 40px rgba(255, 215, 0, 0.6); 
-        border-top-color: #FFD700; 
-        background-color: #2a2a2a; 
-    }
-    100% {
-        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        border-top-color: transparent;
-        background-color: var(--footer-bg);
-    }
-}
-
-.footer-highlight {
-    animation: glowFooter 2s ease-out;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
+.social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
 .social-icon {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #333;
-    color: white;
-    border-radius: 10px;
-    font-size: 1.3rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    background-color: #333; color: white;
+    border-radius: 50%; text-decoration: none; transition: 0.3s;
 }
+.social-icon:hover { transform: translateY(-3px); background: var(--primary); }
 
-.social-icon:hover { transform: translateY(-3px); }
-.social-icon.tiktok:hover { background: #000; text-shadow: 2px 2px 0px #0ff, -2px -2px 0px #f00; }
-.social-icon.insta:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-.social-icon.fb:hover { background: #1877F2; }
-.social-icon.x:hover { background: #000; }
-.social-icon.yt:hover { background: #FF0000; }
-
-.footer-copy {
-    margin-bottom: 15px;
-    line-height: 1.6;
-    opacity: 0.8;
+@keyframes glowFooter {
+    0% { border-top-color: transparent; box-shadow: none; }
+    20% { border-top-color: #FFD700; box-shadow: 0 -10px 40px rgba(255, 215, 0, 0.3); }
+    100% { border-top-color: transparent; box-shadow: none; }
 }
-
-.footer-contact {
-    color: #e0b06b;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s;
-}
-.footer-contact:hover {
-    color: #fff;
-    text-decoration: underline;
-}
+.footer-highlight { animation: glowFooter 2s ease-out; }
 
 /* =========================================
-   7. RESPONSIVIDAD
+   9. ESTILOS DE LOGIN (Inputs con Iconos)
    ========================================= */
+.input-group-login {
+    position: relative;
+    margin-bottom: 15px;
+}
+.input-group-login .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 14px; /* Ajustado para centrar verticalmente */
+    color: var(--text-muted);
+    pointer-events: none;
+    z-index: 2;
+}
+.input-group-login input {
+    padding-left: 45px; /* Espacio para el icono */
+    margin-bottom: 0;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
     .desktop-nav { display: none; }
     .mobile-nav { display: flex; }
-    
-    .hero-section {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding-top: 20px;
-    }
-    .hero-text h1 { font-size: 2.2rem; }
-    .hero-image img { max-width: 90%; margin-bottom: 30px; }
-    
-    .dashboard-layout { padding-top: 20px; }
+    .hero-section { flex-direction: column-reverse; text-align: center; }
+    .hero-image img { max-width: 80%; margin-bottom: 20px; }
 }
-
-@media (min-width: 769px) {
-    .main-footer {
-        padding-bottom: 50px; 
-    }
-}
-
-/* =========================================
-   8. COMPONENTES GLOBALES (Heredados)
-   ========================================= */
-.card {
-    background: var(--bg-card);
-    padding: 40px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    width: 100%;
-    margin-bottom: 20px;
-}
-.login-card { max-width: 400px; text-align: center; margin: auto;}
-header.main-header { background: var(--secondary); color: white; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; }
-header h1 { font-size: 1.5rem; font-weight: 600; margin: 0; }
-input, select { width: 100%; padding: 14px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: var(--radius); font-size: 1rem; background-color: #fafafa; transition: all 0.3s ease; }
-input:focus, select:focus { border-color: var(--primary); background-color: #fff; outline: none; box-shadow: 0 0 0 4px rgba(0, 68, 255, 0.1); }
-.btn { width: 100%; background-color: var(--primary); color: white; padding: 14px; border: none; border-radius: var(--radius); cursor: pointer; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.3s, transform 0.1s; display: inline-block; text-align: center; }
-.btn:hover { background-color: var(--primary-dark); }
-.msg-error { color: var(--danger); font-weight: bold; margin-top: 15px; font-size: 0.9rem; }
-.msg-success { color: var(--success); font-weight: bold; margin-top: 15px; font-size: 0.9rem; }
-.table-responsive { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-th { background-color: #f1f3f5; font-weight: 600; color: var(--text-main); }
