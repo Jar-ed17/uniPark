@@ -838,69 +838,64 @@ body.dashboard-bg {
 }
 
 /* =========================================
-   AJUSTES MÓVILES: BARRA COMPACTA
+   AJUSTES MÓVILES (LANDING PAGE - INDEX)
    ========================================= */
 @media (max-width: 768px) {
     
-    /* 1. Transformar la barra a modo vertical compacto */
+    /* 1. Transformar la barra a modo vertical (Logo arriba, botones abajo) */
     .desktop-nav {
-        display: flex !important;    /* Forzar que se vea */
-        flex-direction: column;      /* Logo arriba, botones abajo */
-        padding: 10px 0;             /* Menos relleno vertical */
-        height: auto;                /* Altura automática */
-        gap: 10px;                   /* Espacio entre logo y botones */
-        background-color: var(--nav-bg); /* Asegurar fondo oscuro */
+        display: flex !important;
+        flex-direction: column;      /* Elementos uno debajo del otro */
+        height: auto !important;     /* Permitir que la barra crezca */
+        padding: 10px 0;             /* Relleno vertical */
+        gap: 10px;                   /* Espacio entre Logo y Botones */
+        justify-content: center;
     }
 
-    /* 2. Ajustar el contenedor de botones para que centre todo */
+    /* 2. Organizar los botones para que quepan */
     .nav-menu-container {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;             /* Si no caben, bajan a otra línea */
+        justify-content: center;     /* Todo centrado */
         align-items: center;
-        flex-wrap: wrap;       /* Si la pantalla es muy pequeña, permite saltar línea */
-        gap: 5px;              /* Espacio pequeño entre botones */
+        gap: 6px;                    /* Espacio pequeño entre botones */
         width: 100%;
     }
 
-    /* 3. VERSIÓN "MINI" DE LOS BOTONES (Solo para móvil) */
+    /* 3. Estilo "Mini" para los botones en celular */
     .nav-btn-blue, 
     .nav-btn-gray {
-        font-size: 0.75rem;    /* Texto más pequeño (aprox 12px) */
-        padding: 6px 12px;     /* Botones más delgados */
-        border-radius: 20px;   /* Redondeado ajustado */
-        white-space: nowrap;   /* Evita que el texto se rompa en dos líneas */
+        font-size: 0.75rem;          /* Letra más pequeña (aprox 12px) */
+        padding: 6px 12px;           /* Botones más delgados */
+        margin-left: 0 !important;   /* Quitar márgenes viejos */
+        white-space: nowrap;         /* Evitar que el texto se parta */
     }
 
-    /* Botón gris sin margen extra en móvil */
-    .nav-btn-gray {
-        margin-left: 0; 
-    }
-
-    /* Texto de enlaces (Contacto, Invitados) más compacto */
     .nav-text {
         font-size: 0.75rem;
-        padding: 5px 8px;      /* Menos espacio lateral */
+        padding: 5px 8px;
     }
 
-    /* 4. Ajustar el cuerpo de la página para que no se tape */
-    body {
-        padding-top: 100px; /* Un poco más de espacio arriba porque la barra ahora es doble */
+    /* 4. EMPUJAR EL CONTENIDO (CRUCIAL) 
+       Como la barra ahora es más alta (aprox 100px), bajamos el contenido */
+    body.dashboard-layout {
+        padding-top: 110px !important; 
     }
 
-    /* 5. Ajustar el Hero Section (Texto e Imagen) */
+    /* 5. Ajustes estéticos del Hero (Coche y Texto) */
     .hero-section {
-        flex-direction: column-reverse; /* Imagen arriba, texto abajo */
+        flex-direction: column-reverse; /* Coche arriba, texto abajo */
         text-align: center;
-        padding-top: 20px;
+        padding-top: 10px;
         gap: 20px;
     }
-    
+
     .hero-text h1 {
-        font-size: 2rem; /* Título un poco más chico para móvil */
+        font-size: 2rem;
     }
-    
-    /* Centrar los botones de acción del Hero (Acceso Usuarios / Pase Invitado) */
-    .hero-text div {
-        justify-content: center !important;
+
+    .hero-image img {
+        max-width: 85%; /* Coche un poco más pequeño para que luzca bien */
+        margin: 0 auto;
     }
 }
