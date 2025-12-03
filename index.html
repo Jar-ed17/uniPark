@@ -12,20 +12,21 @@
 
 <body class="dashboard-layout">
 
-    <!-- NAV DESKTOP -->
-    <nav class="desktop-nav">
-        <div class="logo">
-            <span>UP</span> UniPark
-        </div>
-        <div class="nav-links">
-            <a href="#" class="nav-link active">Inicio</a>
-            <!-- El botón Contacto activa la animación dorada -->
-            <a href="#main-footer" class="nav-link" onclick="highlightFooter()">Contacto</a>
-            <!-- Enlace directo al registro de invitados -->
-            <a href="invitado-registro.html" class="nav-link">Invitados</a>
-            <a href="login.html" class="btn-login" style="padding: 8px 20px; font-size: 0.9rem;">Iniciar Sesión</a>
-        </div>
-    </nav>
+<nav class="desktop-nav">
+    <div class="logo">
+        <span>UP</span> UniPark
+    </div>
+    
+    <div class="nav-menu-container">
+        <a href="index.html" class="nav-btn-blue">Inicio</a>
+
+        <a href="#main-footer" class="nav-text" onclick="highlightFooter()">Contacto</a>
+        
+        <a href="invitado-registro.html" class="nav-text">Invitados</a>
+
+        <a href="login.html" class="nav-btn-gray">Iniciar Sesión</a>
+    </div>
+</nav>
 
     <!-- HERO SECTION -->
     <div class="container">
@@ -68,13 +69,13 @@
         </p>
     </footer>
 
-    <!-- NAV MOBILE -->
-    <nav class="mobile-nav">
-        <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i></a>
-        <a href="invitado-registro.html" class="nav-link"><i class="fa-solid fa-user-plus"></i></a>
-        <a href="#main-footer" class="nav-link" onclick="highlightFooter()"><i class="fa-solid fa-phone"></i></a>
-        <a href="login.html" class="nav-link"><i class="fa-solid fa-right-to-bracket"></i></a>
-    </nav>
+
+
+    <nav class="mobile-top-bar">
+        <div class="logo">
+            <span>UP</span> UniPark
+        </div>
+        </nav>
 
     <script>
         function highlightFooter() {
